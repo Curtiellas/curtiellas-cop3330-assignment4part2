@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.Controller">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#loadOneList" text="Load One File" />
+                  <MenuItem mnemonicParsing="false" onAction="#loadAllLists" text="Load All Files" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#saveOneList" text="Save Selected List" />
+                  <MenuItem mnemonicParsing="false" onAction="#saveAllLists" text="Save All Open Lists" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+              <MenuItem mnemonicParsing="false" onAction="#exitGUI" text="Exit" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#editListTitle" text="Edit List Title" />
+              <MenuItem mnemonicParsing="false" onAction="#removeList" text="Delete List" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#editDescription" text="Edit Task Description" />
+                  <MenuItem mnemonicParsing="false" onAction="#editDate" text="Edit Task Due Date" />
+                  <MenuItem mnemonicParsing="false" onAction="#editStatus" text="Edit Task Status" />
+                  <MenuItem mnemonicParsing="false" onAction="#removeTask" text="Delete Task" />
+                  <MenuItem mnemonicParsing="false" onAction="#removeAllTasks" text="Delete All Tasks in List" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#sortByDate" text="Sort By Due Date" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="View">
+              <items>
+                  <CheckMenuItem fx:id="compactViewMenu" mnemonicParsing="false" onAction="#displayTasks" selected="true" text="Compact" />
+              </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#showAbout" text="About" />
+            </items>
+          </Menu>
+        </menus>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </MenuBar>
+   </top>
+   <left>
+      <VBox maxWidth="-Infinity" prefHeight="200.0" prefWidth="270.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="List Creation" VBox.vgrow="NEVER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="15.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <HBox layoutX="20.0" layoutY="15.0" prefHeight="35.0" prefWidth="200.0" VBox.vgrow="NEVER">
+               <children>
+                  <TextField fx:id="listTitleInput" promptText="title">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Button fx:id="addListButton" mnemonicParsing="false" onAction="#addList" text="Add List">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </HBox>
+            <Label text="Task Creation" VBox.vgrow="NEVER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="15.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <HBox layoutX="20.0" layoutY="45.0" prefHeight="35.0" prefWidth="200.0" VBox.vgrow="NEVER">
+               <children>
+                  <TextField fx:id="taskDescriptionInput" promptText="description">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Button fx:id="addTaskButton" mnemonicParsing="false" onAction="#addTask" text="Add Task">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox layoutX="20.0" layoutY="115.0" prefHeight="35.0" prefWidth="200.0" VBox.vgrow="NEVER">
+               <children>
+                  <TextField fx:id="taskDueDateInput" promptText="due date: YYYY-MM-DD">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="35.0" prefWidth="200.0" VBox.vgrow="NEVER">
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+               <children>
+                  <RadioButton fx:id="taskCreationIncompleteToggle" mnemonicParsing="false" selected="true" text="Incomplete">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="taskCreationStatusToggleGroup" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="taskCreationCompleteToggle" mnemonicParsing="false" text="Complete" toggleGroup="$taskCreationStatusToggleGroup">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </RadioButton>
+               </children>
+            </HBox>
+            <Label text="Task Filter" VBox.vgrow="NEVER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="15.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <HBox prefHeight="35.0" prefWidth="200.0" VBox.vgrow="NEVER">
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+               <children>
+                  <RadioButton fx:id="taskFilterAllToggle" mnemonicParsing="false" onAction="#displayTasks" selected="true" text="All">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="taskFilterStatusToggleGroup" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="taskFilterIncompleteToggle" mnemonicParsing="false" onAction="#displayTasks" text="Incomplete" toggleGroup="$taskFilterStatusToggleGroup">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </RadioButton>
+                  <RadioButton fx:id="taskFilterCompleteToggle" mnemonicParsing="false" onAction="#displayTasks" text="Complete" toggleGroup="$taskFilterStatusToggleGroup">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </RadioButton>
+               </children>
+            </HBox>
+            <Label text="Message Area" VBox.vgrow="NEVER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="15.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="helpMessage" text="There was a problem at startup" textFill="#c91c1c" wrapText="true">
+               <VBox.margin>
+                  <Insets left="15.0" top="5.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets right="5.0" />
+         </padding>
+      </VBox>
+   </left>
+   <right>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <Region maxWidth="-Infinity" prefHeight="200.0" prefWidth="10.0" />
+         </children></VBox>
+   </right>
+   <center>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <SplitPane dividerPositions="0.3" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="373.0" prefWidth="121.0">
+                     <children>
+                        <ListView fx:id="toDoListListView" onContextMenuRequested="#rightClick" onMouseClicked="#displayTasks" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                        <Label text="To Do Lists" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <ListView fx:id="taskListView" onContextMenuRequested="#rightClick" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                        <Label text="Tasks" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </children>
+      </AnchorPane>
+   </center>
+   <bottom>
+      <Region maxHeight="-Infinity" prefHeight="10.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>
