@@ -1,15 +1,18 @@
+/*
+ *  UCF COP3330 Fall 2021 Assignment 4 Solution
+ *  Copyright 2021 luis curtiellas
+ */
 package ucf.assignments;
 
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class DataTest {
 
-    //we use this array list of to-do lists to test on
+    //mock main list to test on, the 2 lists are in files "test1.csv" and "test2.csv" in the test folder
     ArrayList<ToDoList> getList() {
         Task task1 = new Task("task 1", LocalDate.parse("3333-01-01"), "Incomplete");
         Task task2 = new Task("task 2", LocalDate.parse("2222-02-02"), "Complete");
@@ -91,7 +94,4 @@ class DataTest {
         assertArrayEquals(tasks1, Data.getCompleteTaskStrings( getList(), 1 ));
     }
 
-    @Test
-    void sortByDate() {
-    }
 }

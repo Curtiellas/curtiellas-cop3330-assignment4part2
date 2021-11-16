@@ -109,7 +109,7 @@ public class Controller implements Initializable {
                 Made by novice Luis Curtiellas.
                 UCF COP3330 Fall 2021 Assignment 4.
                 This application can create and edit to-do lists, each of which can hold tasks.
-                https://github.com/Curtiellas?tab=repositories""", orangeNeutral);
+                Guide here: https://github.com/Curtiellas/curtiellas-cop3330-assignment4part2""", orangeNeutral);
     }
 
     @FXML
@@ -167,7 +167,7 @@ public class Controller implements Initializable {
         }
 
         //adding created list to our 'to-do list' list
-        Data.getMainList().add(list);
+        testableController.addList1(list);
 
         //displaying all lists, including new one
         displayLists();
@@ -193,7 +193,7 @@ public class Controller implements Initializable {
 
         try {
             //remove the object at index selected
-            Data.getMainList().remove(index);
+            testableController.removeList1(index);
         } catch (Exception e) {
             error = true;
             e.printStackTrace();
@@ -235,7 +235,7 @@ public class Controller implements Initializable {
 
         try {
             //edit the title at index selected
-            Data.getMainList().get(index).setTitle(listTitleInput.getText());
+            testableController.editListTitle1(index, listTitleInput.getText());
         } catch (Exception e) {
             error = true;
             e.printStackTrace();
@@ -363,7 +363,7 @@ public class Controller implements Initializable {
         int index = toDoListListView.getFocusModel().getFocusedIndex();
 
         //adding created task to our list
-        Data.getMainList().get(index).getTaskList().add(task);
+        testableController.addTask1(index, task);
 
         //displaying all tasks, including new one
         displayTasks();
@@ -400,7 +400,7 @@ public class Controller implements Initializable {
 
         try {
             //remove the object at index selected
-            Data.getMainList().get(indexList).getTaskList().remove(indexTask);
+            testableController.removeTask1(indexList, indexTask);
         } catch (Exception e) {
             error = true;
             e.printStackTrace();
@@ -494,7 +494,7 @@ public class Controller implements Initializable {
 
         try {
             //edit mainList.taskList.description at index selected
-            Data.getMainList().get(indexList).getTaskList().get(indexTask).setDescription(taskDescriptionInput.getText());
+            testableController.editDescription1(indexList, indexTask, taskDescriptionInput.getText());
         } catch (Exception e) {
             error = true;
             e.printStackTrace();
@@ -555,7 +555,7 @@ public class Controller implements Initializable {
 
         try {
             //edit mainList.taskList.dueDate at index selected
-            Data.getMainList().get(indexList).getTaskList().get(indexTask).setDueDate(time);
+            testableController.editDate1(indexList, indexTask, time);
         } catch (Exception e) {
             error = true;
             e.printStackTrace();
@@ -600,10 +600,7 @@ public class Controller implements Initializable {
 
         try {
             //edit mainList.taskList.status at index selected to the other value
-            if (Data.getMainList().get(indexList).getTaskList().get(indexTask).getStatus().equals("Complete"))
-                Data.getMainList().get(indexList).getTaskList().get(indexTask).setStatus("Incomplete");
-            else
-                Data.getMainList().get(indexList).getTaskList().get(indexTask).setStatus("Complete");
+            testableController.editStatus1(indexList, indexTask);
         } catch (Exception e) {
             error = true;
             e.printStackTrace();

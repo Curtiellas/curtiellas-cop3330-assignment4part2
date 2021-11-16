@@ -86,6 +86,17 @@ class Controller {
     #loadAllLists()
 }
 
+class testableController {
+    +addList1()
+    +removeList1()
+    +editListTitle1()
+    +addTask()
+    +removeTask1()
+    +editDescription1()
+    +editDate1()
+    +editStatus1()
+}
+
 class SaveLoad {
     -String saveDirectory
     -String separator
@@ -109,6 +120,7 @@ Task -right* toDoList
 toDoList -right> Data
 
 Data -down-> Controller
+Controller -down-> testableController
 
 note bottom of Controller : Manages all user interactions\nand modifies to-do lists
 note right of Data : Array List that holds all to-do lists
