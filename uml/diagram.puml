@@ -1,0 +1,116 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Data {
+    -ArrayList<ToDoList> mainList
+    -String displaySeparator
+    +getTitleStrings()
+    +getTaskStrings()
+    +getIncompleteTaskStrings()
+    +getCompleteTaskStrings()
+    +sortByDate()
+}
+
+class toDoList {
+    -String title
+    -ArrayList<Task> taskList
+    +constructor()
+    +setters()
+    +getters()
+}
+
+class Task {
+    -String description
+    -LocalDate dueDate
+    -String status
+    +constructor()
+    +setters()
+    +getters()
+    +toStringClean()
+}
+
+class App {
+    +start()
+    +main()
+}
+
+class Controller {
+    -- List Controls --
+    -TextField listTitleInput
+    -- Task Creation Controls --
+    -TextField taskDescriptionInput
+    -TextField taskDueDateInput
+    -RadioButton taskCreationIncompleteToggle
+    -RadioButton taskCreationCompleteToggle
+    -- Task Filter Controls --
+    -RadioButton taskFilterAllToggle
+    -RadioButton taskFilterIncompleteToggle
+    -RadioButton taskFilterCompleteToggle
+    -- Message Area --
+    -Label helpMessage
+    -- Display Panels / List Holders --
+    -ListView<String> toDoListListView
+    -ListView<String> taskListView
+    -ObservableList<String> observableListList
+    -ObservableList<String> observableListTask
+    -- File Load/Save Screen --
+    -FileChooser fileChooser
+    -- Color Constants --
+    -String redError
+    -String orangeNeutral
+    -String greenSuccess
+    -- General Tools --
+    #initialize()
+    #showAbout()
+    #setHelpMessage()
+    #rightClick()
+    #exitGUI()
+    -- List Tools --
+    #displayList()
+    #addList()
+    #removeList()
+    #editListTitle()
+    -- Task Tools --
+    #displayTasks()
+    #addTask()
+    #removeTask()
+    #removeAllTasks()
+    #editDescription()
+    #editDate()
+    #editStatus()
+    #sortByDate()
+    -- Save/Load Tools--
+    #saveOneList()
+    #saveAllLists()
+    #loadOneList()
+    #loadAllLists()
+}
+
+class SaveLoad {
+    -String saveDirectory
+    -String separator
+    -String separatorName
+    --
+    +saveFile()
+    +loadFile()
+    ..
+    +getFilePaths()
+    +makeDir()
+}
+
+Controller::saveOneList -right-> SaveLoad::saveFile
+Controller::saveAllLists -right-> SaveLoad::saveFile
+Controller::loadOneList -right-> SaveLoad::loadFile
+Controller::loadAllLists -right-> SaveLoad::loadFile
+
+App -right[thickness=8]-> Controller::initialize
+
+Task -right* toDoList
+toDoList -right> Data
+
+Data -down-> Controller
+
+note bottom of Controller : Manages all user interactions\nand modifies to-do lists
+note right of Data : Array List that holds all to-do lists
+note bottom of SaveLoad : Tools that create/write to files and\nextract the information from files
+@enduml
